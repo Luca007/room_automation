@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Automação do Quarto</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <meta name="color-scheme" content="dark" />
+</head>
+<body>
+  <div id="app">
+    <!-- Tela de Autenticação -->
+    <section id="auth-view" class="view active">
+      <div class="auth-card">
+        <h1>Automação do Quarto</h1>
+        <p class="subtitle">Acesse para controlar seus dispositivos</p>
+        <form id="auth-form">
+          <div class="tabs" role="tablist">
+            <button type="button" class="tab active" data-mode="login" aria-selected="true">Entrar</button>
+            <button type="button" class="tab" data-mode="register" aria-selected="false">Registrar</button>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" type="email" autocomplete="username" required />
+          </div>
+          <div class="field">
+            <label for="password">Senha</label>
+            <input id="password" type="password" autocomplete="current-password" required minlength="6" />
+          </div>
+          <button id="submit-auth" type="submit" class="primary w-full">Entrar</button>
+          <div class="oauth-separator">
+            <span>ou</span>
+          </div>
+          <button id="google-auth" type="button" class="google-btn" title="Entrar com Google">
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" />
+            Google
+          </button>
+          <p id="auth-error" class="error-text" aria-live="assertive"></p>
+        </form>
+      </div>
+      <footer class="footer-note">Tema escuro • Interface Reativa • Dados em tempo real</footer>
+    </section>
+
+    <!-- Tela Principal -->
+    <section id="main-view" class="view">
+      <header class="topbar">
+        <div class="brand">
+          <span class="logo-glow"></span>
+          <h2>Automação</h2>
+        </div>
+        <div class="user-area">
+          <span id="user-email" class="user-email"></span>
+          <button id="logout-btn" class="secondary small">Sair</button>
+        </div>
+      </header>
+      <main class="content">
+        <div id="devices-grid" class="devices-grid" aria-live="polite"></div>
+        <div id="empty-hint" class="empty-hint hidden">Nenhum dispositivo encontrado ainda.</div>
+      </main>
+    </section>
+  </div>
+
+  <!-- Toasts -->
+  <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Dialogs (ex: confirmações futuras) -->
+
+  <!-- Firebase SDKs -->
+  <script type="module" src="https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js"></script>
+  <script type="module" src="https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js"></script>
+  <script type="module" src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js"></script>
+  <script type="module" src="firebase.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
